@@ -1,1 +1,32 @@
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+df=pd.read_csv('https://raw.githubusercontent.com/harimittapalli/Mulitple-Linear-Reggression/master/50_Startups.csv')
+df.head()
+df.shape
+df=df.select_dtypes(include=['int64','float64'])
+df
+df.isnull().sum()
+df.shape
+x=df.iloc[:,0:3].values
+y=df.iloc[:,-1].values
+x
+#import liabrary
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,random_state=0,test_size=0.25)
+print(x_train.shape)
+print(x_test.shape)
+#Fitting Multiple linear regression to the training data set
+from sklearn.linear_model import LinearRegression
+model.LinearRegression() //call the regression
+model.fit(x_train,y_train) // fiting with trained data
+y_pred=model.predict(x_test)
+y_pred          // predict the profit
+y_test
+df1=pd.DataFrame({'Actual':y_test,'predicted':y_pred})
+df1.plot(figsize=(10,8))
+df1.plot(figsize=(20,8),kind='bar')
+import seaborn as sns
+sns.regplot(x='Actual',y='predicted',data=df1)
+from sklearn.metrics import  r2_score
+r2_score(y_test,y_pred)  // r2 score 
